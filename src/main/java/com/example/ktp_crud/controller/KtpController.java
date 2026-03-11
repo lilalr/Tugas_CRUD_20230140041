@@ -57,5 +57,22 @@ public class KtpController {
         ));
     }
 
+    @PutMapping(
+            path = "/ktp/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Map<String, Object>> updateKtp(
+            @PathVariable("id") Integer id,
+            @RequestBody KtpAddRequest request
+    ) {
+        KtpDto result = ktpService.updateKtp(id, request);
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", "success",
+                "message", "Data KTP berhasil diperbarui",
+                "data", result
+        ));
+    }
+
 
 }
