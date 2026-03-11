@@ -19,5 +19,19 @@ public class KtpController {
     @Autowired
     private KtpService ktpService;
 
+    @PostMapping(
+            path = "/ktp",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Map<String, Object>> addKtp(@RequestBody KtpAddRequest request) {
+        KtpDto result = ktpService.addKtp(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+                "status", "success",
+                "message", "Data KTP berhasil ditambahkan",
+                "data", result
+        ));
+    }
+
 
 }
