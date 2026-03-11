@@ -45,5 +45,17 @@ public class KtpController {
         ));
     }
 
+    @GetMapping(
+            path = "/ktp/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Map<String, Object>> getKtpById(@PathVariable("id") Integer id) {
+        KtpDto result = ktpService.getKtpById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", "success",
+                "data", result
+        ));
+    }
+
 
 }
