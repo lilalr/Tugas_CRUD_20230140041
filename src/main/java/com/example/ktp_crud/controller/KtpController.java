@@ -74,5 +74,15 @@ public class KtpController {
         ));
     }
 
-
+    @DeleteMapping(
+            path = "/ktp/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Map<String, Object>> deleteKtp(@PathVariable("id") Integer id) {
+        ktpService.deleteKtp(id);
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", "success",
+                "message", "Data KTP dengan id " + id + " berhasil dihapus"
+        ));
+    }
 }
